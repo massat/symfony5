@@ -70,3 +70,11 @@ RUN apt-get update \
 RUN curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
   && chmod +x /usr/local/bin/docker-compose \
   && ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+# yarn
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
+  && apt-get install -y --no-install-recommends \
+  nodejs \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* \
+  && npm install --global yarn
